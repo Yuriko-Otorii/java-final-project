@@ -1,0 +1,30 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: head">
+</head>
+
+<body>
+	<div class="container">
+		<h4>Driver choose list</h4>
+		<table>
+			<thead>
+				<th>
+				<th>Order ID</th>
+				<th>Address</th>
+				<th>Drivers</th>
+				</th>
+			</thead>
+			
+			<tbody>
+				<tr th:each="e.${orderList}" th:each="driversList">
+					<td th:text="e.order_id"></td>
+					<td th:text="e."></td>
+					<td th:text="e."></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</body>
+
+</html>
