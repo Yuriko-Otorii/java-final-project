@@ -16,10 +16,10 @@
 			</thead>
 			
 			<tbody>
-				<tr th:each="e.${orderList}" th:each="driversList">
-					<td th:text="e.order_id"></td>
-					<td th:text="e."></td>
-					<td th:text="e."></td>
+				<tr th:each="e1.${orderList} e2.${driversList}" >
+					<td th:text="e1.order_id"></td>
+					<td th:text="e2.first_name"></td>
+					
 				</tr>
 			</tbody>
 		</table>
