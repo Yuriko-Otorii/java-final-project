@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts :: head"></head>
+
+<body>
+
+	<nav th:replace="layouts :: navbar"></nav>
+
+	<div class="container">
+		<h3 style="margin-top: 18px;">Customer List</h3>
+		<hr/>
+		
+		<a th:href="@{/driver}" class="btn btn-secondary btn-sm mb-3" style="margin-top: 18px;">Back to Driver List</a>
+		
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>Order name</th>
+					<th>Order product</th>
+					<th>Order version</th>
+					<th>Order quantity</th>
+					<th>Related customer</th>
+				</tr>
+			</thead>
+		
+			<tbody>
+				<tr th:each="field: ${assignedOrders}">
+					<td th:text="${field.product}"></td>
+					<td th:text="${field.version}"></td>
+					<td th:text="${field.quantity}"></td>			
+					<td th:text="${field.customerRel}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

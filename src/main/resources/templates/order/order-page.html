@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: head(title='Driver assign')"></head>
+
+<body>
+	<nav th:replace="layouts :: navbar"></nav>
+	
+	<div class="container" th:object="${eachCustomer}">
+		<h3 style="margin-top: 18px;">Product Order Page</h3>
+		<hr />
+		
+		<label style="font-size: 18px;"><strong th:text="'Hello ' + ${eachCustomer.name}"></strong></label> 		
+
+		<form action="/order/save" method="POST" th:object="${order}">
+			<input type="text" name="${order.customerId}" value="${user}" />			
+			<div class="mb-3">
+				<label class="form-label" style="margin-top: 24px;"><strong>Product</strong></label>
+				<select class="form-control" th:field="${order.product}">
+					<option value="" selected>***Choose a product***</option>
+					<option th:each="e: ${productList}" th:value="${e.productId}"
+						th:text="${e.name}"></option>
+				</select>
+			</div>
+			
+			<div class="mb-3">
+				<label class="form-label" style="margin-top: 24px;"><strong>Version</strong></label>
+				<select class="form-control" th:field="${order.version}">
+					<option value="" selected>***Choose a version***</option>
+					<option th:each="e: ${productList}" th:value="${e.productId}"
+						th:text="${e.version}"></option>
+				</select>
+			</div>
+			
+			<div class="mb-3">
+				<label class="form-label" style="margin-top: 24px;"><strong>Quantity</strong></label>
+				<select class="form-control" th:field="${order.quantity}">
+					<option value="" selected>***Choose a quantity***</option>
+					<option th:each="i : ${#numbers.sequence(1,10)}" th:value="${e.productId}"
+						th:text="${i}"></option>
+				</select>
+			</div>
+
+			<button type="submit" class="btn btn-primary text-white">Finish Order</button>
+		</form>
+
+	</div>
+
+
+</body>
+
+</html>

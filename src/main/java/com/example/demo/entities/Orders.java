@@ -1,13 +1,19 @@
 package com.example.demo.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Orders {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long orderId;
@@ -15,10 +21,29 @@ public class Orders {
 	private String version;
 	private long quantity;
 	
+	@ManyToOne(
+		cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
+        fetch = FetchType.LAZY
+		)
+	
+	@JoinColumn(name="driver_id")
+	
+	private Drivers driverRel;
+	
+	
+	@OneToOne(		
+		cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
+        fetch = FetchType.LAZY
+		)	
+	
+	@JoinColumn(name="customer_id")
+	
+	private Customers customerRel;
+
+	
 	public Orders() {}
 	
 	public Orders(long orderId, String product, String version, long quantity) {
-		super();
 		this.orderId = orderId;
 		this.product = product;
 		this.version = version;
@@ -55,9 +80,15 @@ public class Orders {
 
 	public void setQuantity(long quantity) {
 		this.quantity = quantity;
-	}	
+	}
 
+	public Drivers getDriverRel() {
+		return driverRel;
+	}
+
+	public void setDriverRel(Drivers driverRel) {
+		this.driverRel = driverRel;
+	}
 	
-	
-	
+
 }

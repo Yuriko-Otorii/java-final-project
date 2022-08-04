@@ -1,5 +1,7 @@
 package com.example.demo.entities;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,37 +11,36 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
-import javax.websocket.OnError;
+
+
 
 @Entity
 public class Drivers {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long driverId;
-	private String firstNameString;
-	private String lastNameString;
+	private String firstName;
+	private String lastName;
 	
 	
-//	@OneToMany(
-//		cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
-//		fetch = FetchType.LAZY
-//	)
-//	
-//	@JoinTable(
-//		name =  "driver_order",
-//		joinColumns = @JoinColumn("driver_id"),
-//		inverseJoinColumns = @JoinColumn("order_id")
-//	)
-		
+	@OneToMany
+	
+	@JoinTable(
+		name = "driver_order",
+		joinColumns = @JoinColumn(name="driver_id"),
+		inverseJoinColumns = @JoinColumn(name="order_id")
+			)
+	
+	
+	private List<Orders> orders;
 	
 	public Drivers() {}
 	
-	public Drivers(long driverId, String firstNameString, String lastNameString) {
+	public Drivers(long driverId, String firstName, String lastName) {
 		super();
 		this.driverId = driverId;
-		this.firstNameString = firstNameString;
-		this.lastNameString = lastNameString;
+		this.firstName = firstName;
+		this.lastName = lastName;
 	}
 
 	public long getDriverId() {
@@ -50,27 +51,30 @@ public class Drivers {
 		this.driverId = driverId;
 	}
 
-	public String getFirstNameString() {
-		return firstNameString;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirstNameString(String firstNameString) {
-		this.firstNameString = firstNameString;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getLastNameString() {
-		return lastNameString;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLastNameString(String lastNameString) {
-		this.lastNameString = lastNameString;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
-	
-	
-	
+
+	public List<Orders> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Orders> orders) {
+		this.orders = orders;
+	}
 	
 	
 	
 }
-
-	

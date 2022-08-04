@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts :: head"></head>
+
+<body>
+
+	<nav th:replace="layouts :: navbar"></nav>
+
+	<div class="container">
+		<h3 style="margin-top: 18px;">Driver list</h3>
+		<hr />
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>Driver ID</th>
+					<th>Driver Name</th>
+					<th>     </th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="e: ${driverList}">
+					<td th:text="${e.driverId}"></td>
+					<td th:text="${e.firstName} + ' ' + ${e.lastName}"></td>
+					<td>
+						<a th:href="@{/driver/check/{id}(id=${e.driverId})}" class="btn btn-primary btn-sm mb-3" >Check Orders</button>
+
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</body>
+
+</html>

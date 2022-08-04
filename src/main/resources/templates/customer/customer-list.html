@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: head(title='Customers')"></head>
+
+<body>
+	<nav th:replace="layouts :: navbar"></nav>
+
+	<div class="container">
+		<h3 style="margin-top: 18px;">Customer List</h3>
+		<hr />
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Address</th>
+					<th>       </th>
+					
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="e: ${customerList}">
+					<td th:text="${e.customerId}"></td>
+					<td th:text="${e.name}"></td>
+					<td th:text="${e.address}"></td>
+					<td>
+						<a th:href="@{/customer/order/{id}(id=${e.customerId})}" class="btn btn-primary btn-sm mb-3" >Go Order Page</a>
+					</td>
+					
+					
+			</tbody>
+		   </div>
+		</table>
+		<a th:href="@{/customer/registration}" class="btn btn-primary btn-sm mb-3" >Create Account</a>
+	</div>
+
+</body>
+
+</html>

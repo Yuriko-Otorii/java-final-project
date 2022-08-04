@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: head(title='Driver assign')"></head>
+
+<body>
+	<nav th:replace="layouts :: navbar"></nav>
+	
+	<div class="container">
+	
+		<form action="/customer/save" method="POST" th:object="${customer}">
+			<fieldset >
+			  <legend>New Customer</legend>
+			  <hr class="mb-4" />
+			  <div class="mb-3">
+				<label class="form-label">Name</label>
+				<input class="form-control" type="text" placeholder="Name" th:field="*{name}" >
+			  </div>
+			  <div class="mb-3">
+				<label class="form-label">Address</label>
+				<input class="form-control" type="text" placeholder="Address" th:field="*{address}" >
+			  </div>
+			  <div class="mb-3">
+				<label class="form-label">Phone Number</label>
+				<input class="form-control" type="text" placeholder="Phone Number" th:field="*{phoneNumber}" >
+			  </div>
+			  <div class="mb-3">
+				<label class="form-label">Email</label>
+				<input class="form-control" type="text" placeholder="Email" th:field="*{email}" >
+			  </div>
+			  <button type="submit" class="btn btn-primary btn-sm mb-3 text-white">Create Account and Go Order Page</button>
+			</fieldset>
+		</form>	
+	
+	</div>
+	
+</body>
+
+</html>

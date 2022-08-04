@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: head(title='Driver assign')"></head>
+
+<body>
+	<nav th:replace="layouts :: navbar"></nav>
+
+	<div class="container" th:object="${eachOrder}">
+		<h3 style="margin-top: 18px;">Assigning Driver</h3>
+		<hr />
+		
+		<label style="font-size: 18px;"><strong>Selected order</strong></label> 
+	
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>ID</th>
+					<th>Product</th>
+					<th>Version</th>
+					<th>Quantity</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr >
+					<td th:text="${eachOrder.orderId}"></td>
+					<td th:text="${eachOrder.product}"></td>
+					<td th:text="${eachOrder.version}"></td>
+					<td th:text="${eachOrder.quantity}"></td>
+			</tbody>
+		   </div>
+		</table>
+
+		<form action="/manager/edit" method="POST">
+			<input type="hidden" name="product" th:field="${eachOrder.product}" />
+			<input type="hidden" name="version" th:field="${eachOrder.version}" />
+			<input type="hidden" name="quantity" th:field="${eachOrder.quantity}" />
+
+
+			<div class="mb-3">
+				<label class="form-label" style="margin-top: 24px;"><strong>Drivers</strong></label>
+				<select class="form-control" th:field="${eachOrder.driverRel}">
+					<option value="" selected>***Choose a driver***</option>
+					<option th:each="e: ${driverList}" th:value="${e.driverId}"
+						th:text="${e.firstName} + ' ' + ${e.lastName}"></option>
+				</select>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Edit Order</button>
+		</form>
+		<a th:href="@{/manager}" class="btn btn-secondary btn-sm mb-3" style="margin-top: 18px;">Back to Order List</a>
+
+	</div>
+
+</body>
+
+</html>

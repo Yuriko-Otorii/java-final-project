@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: head(title='Orders')"></head>
+
+<body>
+	<nav th:replace="layouts :: navbar"></nav>
+
+	<div class="container">
+		<h3 style="margin-top: 18px;">Order List</h3>
+		<hr />
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>ID</th>
+					<th>Product</th>
+					<th>Version</th>
+					<th>Quantity</th>
+					<th>       </th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="e: ${ordersList}">
+					<td th:text="${e.orderId}"></td>
+					<td th:text="${e.product}"></td>
+					<td th:text="${e.version}"></td>
+					<td th:text="${e.quantity}"></td>
+					<td>
+						<a th:href="@{/manager/assign/{id}(id=${e.orderId})}" class="btn btn-primary btn-sm mb-3" >Assign driver</button>
+					</td>
+			</tbody>
+		   </div>
+		</table>
+		
+	</div>
+
+</body>
+
+</html>

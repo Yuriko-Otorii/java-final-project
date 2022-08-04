@@ -1,74 +1,94 @@
 package com.example.demo.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Customers {
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long customer_id;
-	private String name;
-	private String address;
-	private String phone_number;
-	private String description;
-	
-	public Customers() {}
-	
-	public Customers(long customer_id, String name, String address, String phone_number, String description) {
-		super();
-		this.customer_id = customer_id;
-		this.name = name;
-		this.address = address;
-		this.phone_number = phone_number;
-		this.description = description;
-	}
+	  @GeneratedValue(strategy = GenerationType.IDENTITY)
+	  private Long customerId;
+	  private String name;
+	  private String address;
+	  private String phoneNumber;
+	  private String email;
+	  
+	  
+	  @OneToMany
+	  @JoinTable(
+			name = "customer_order",
+			joinColumns = @JoinColumn(name="customer_id"),
+			inverseJoinColumns = @JoinColumn(name="order_id")
+			)		
+	  private List<Orders> orders;
+	 
+//	  @OneToOne(		
+//			cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
+//	        fetch = FetchType.LAZY
+//			)	
+//		
+//	  @JoinColumn(name="order_id")
+	  
+	  
+	  
+	    public Customers(){}
 
-	public long getCustomer_id() {
-		return customer_id;
-	}
+	    public Customers(long customerId, String name, String address, String phoneNumber, String email) {
+	    	this.customerId = customerId;
+	    	this.name = name;
+	        this.address = address;
+	        this.phoneNumber = phoneNumber;
+	        this.email = email;
+	    }
+	    
+	    
 
-	public void setCustomer_id(long customer_id) {
-		this.customer_id = customer_id;
-	}
+		public Long getCustomerId() {
+			return customerId;
+		}
 
-	public String getName() {
-		return name;
-	}
+		public String getName() {
+			return name;
+		}
 
-	public void setName(String name) {
-		this.name = name;
-	}
+		public void setName(String name) {
+			this.name = name;
+		}
 
-	public String getAddress() {
-		return address;
-	}
+		public String getAddress() {
+			return address;
+		}
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+		public void setAddress(String address) {
+			this.address = address;
+		}
 
-	public String getPhone_number() {
-		return phone_number;
-	}
+		public String getPhoneNumber() {
+			return phoneNumber;
+		}
 
-	public void setPhone_number(String phone_number) {
-		this.phone_number = phone_number;
-	}
+		public void setPhoneNumber(String phoneNumber) {
+			this.phoneNumber = phoneNumber;
+		}
 
-	public String getDescription() {
-		return description;
-	}
+		public String getEmail() {
+			return email;
+		}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
-	
+		public void setEmail(String email) {
+			this.email = email;
+		}
+
 	
 	
 }
